@@ -54,8 +54,6 @@ Copy this project folder into your local webserver’s htdocs (XAMPP) or www dir
 Example for XAMPP:
 
 makefile
-Kopyala
-Düzenle
 C:\xampp\htdocs\php-password-manager
 Create the MySQL database
 Open phpMyAdmin (or your preferred MySQL client) and run these queries:
@@ -64,6 +62,7 @@ sql
 CREATE DATABASE IF NOT EXISTS password_manager;
 USE password_manager;
 
+"
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(100) NOT NULL UNIQUE,
@@ -72,7 +71,9 @@ CREATE TABLE users (
     master_key_iv VARBINARY(16) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+"
 
+"
 CREATE TABLE password_entries (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -82,6 +83,8 @@ CREATE TABLE password_entries (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+"
 Configure database credentials
 Edit models/DatabaseConnection.php if your MySQL username/password or host is different:
 
@@ -90,9 +93,13 @@ private $host = 'localhost';
 private $dbname = 'password_manager';
 private $username = 'root';
 private $password = ''; // set your MySQL root password if any
+
+
 Run the app
 Open your browser and go to:
 http://localhost/php-oop-password-manager/index.php
+
+
 🔧 Usage
 Register a new user (username + password).
 
